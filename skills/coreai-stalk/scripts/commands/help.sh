@@ -79,7 +79,7 @@ EOF
   echo "  comments:         ~\$0.02 USD"
   echo "  reels:            ~\$0.02 USD"
   echo ""
-  echo "📂 Output: ~/claude/legacy/outputs/copys/{cliente}/inteligencia/"
+  echo "📂 Output: \${STALK_OUTPUT_BASE:-./outputs/copys}/{cliente}/inteligencia/"
   echo "📚 Docs:   $SKILL_DIR/README.md"
   echo ""
 }

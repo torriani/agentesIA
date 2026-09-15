@@ -11,15 +11,15 @@ description: |
 
 # yt-text — Transcrição YouTube via Captions + Gemini
 
-**Serviço compartilhado:** `infrastructure/services/yt-text/`
+Scripts embutidos nesta skill (`scripts/`), sem dependência externa.
 
 ## Como usar
 
 ### Video único
-Receba a URL do YouTube do usuário e execute:
+Receba a URL do YouTube do usuário e execute, a partir da pasta desta skill:
 
 ```bash
-bash infrastructure/services/yt-text/scripts/yt-text.sh "<url>" "<idioma>"
+bash scripts/yt-text.sh "<url>" "<idioma>"
 ```
 
 ### Batch (múltiplos vídeos)
@@ -27,13 +27,15 @@ Para processar vários vídeos em sequência:
 
 ```bash
 # Por argumentos
-bash infrastructure/services/yt-text/scripts/yt-text-batch.sh "url1" "url2" "url3" --lang pt
+bash scripts/yt-text-batch.sh "url1" "url2" "url3" --lang pt
 
 # Por arquivo (uma URL por linha)
-bash infrastructure/services/yt-text/scripts/yt-text-batch.sh --file lista.txt --lang pt
+bash scripts/yt-text-batch.sh --file lista.txt --lang pt
 ```
 
-Defaults: idioma=pt
+Defaults: idioma=pt. Para escolher onde salvar a saída, defina `OUTPUT_ROOT`
+antes de rodar (ex: `OUTPUT_ROOT=/caminho/de/saida bash scripts/yt-text.sh ...`).
+Sem isso, salva em `./outputs/videos/` relativo ao diretório de trabalho atual.
 
 ## Requisitos
 - `yt-dlp` (brew install yt-dlp)
@@ -48,7 +50,7 @@ Defaults: idioma=pt
 5. Gera plano de ação estruturado (imediatas / curto prazo / médio prazo + tabela de recursos)
 6. Adiciona embed do vídeo `<!-- VIDEO: url -->` para o portal
 7. Dashboard visual com progresso, tokens e custo em tempo real
-8. Salva em `/Users/julianotorriani/claude/outputs/videos/{nome-do-video}-{timestamp}/`
+8. Salva em `${OUTPUT_ROOT:-./outputs/videos}/{nome-do-video}-{timestamp}/`
 
 ## Custo médio
 - Vídeo curto (~10min): ~$0.001
@@ -56,7 +58,7 @@ Defaults: idioma=pt
 
 ## Output
 ```
-/Users/julianotorriani/claude/outputs/videos/{slug}/
+{OUTPUT_ROOT}/{slug}/
 ├── transcricao.md        ← Transcrição formatada + resumo denso + plano de ação
 ├── transcricao-bruta.txt ← Texto bruto das legendas
 ├── metadata.json         ← Metadados do vídeo + tokens + custo

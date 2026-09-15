@@ -2,7 +2,7 @@
 name: list-skills
 description: |
   Lista todas as skills instaladas no sistema com nome e descricao.
-  Escaneia ~/claude/.claude/skills/ e exibe um catalogo formatado.
+  Escaneia ~/.claude/skills/ e exibe um catalogo formatado.
 ---
 
 # List Skills
@@ -17,7 +17,7 @@ Lista todas as skills disponíveis no sistema.
 
 ## WORKFLOW
 
-1. **Escanear** todos os diretórios em `~/claude/.claude/skills/`
+1. **Escanear** todos os diretórios em `~/.claude/skills/`
 2. **Ler** o frontmatter YAML de cada `SKILL.md` encontrado (campos `name` e `description`)
 3. **Exibir** uma tabela formatada com:
 
@@ -32,7 +32,7 @@ Lista todas as skills disponíveis no sistema.
 | 2  | nome  | descricao |
 ...
 
-Diretório: ~/claude/.claude/skills/
+Diretório: ~/.claude/skills/
 ```
 
 - Ordenar alfabeticamente pelo nome

@@ -12,17 +12,19 @@ description: |
 
 # ig-text — Transcrição Instagram via Captions/Whisper + Gemini
 
-**Serviço compartilhado:** `infrastructure/services/ig-text/`
+Script embutido nesta skill (`scripts/ig-text.sh`), sem dependência externa.
 
 ## Como usar
 
-Receba a URL do Instagram do usuário e execute:
+Receba a URL do Instagram do usuário e execute, a partir da pasta desta skill:
 
 ```bash
-bash ~/claude/legacy/copy-clientes/infrastructure/services/ig-text/scripts/ig-text.sh "<url>"
-
-# Output salvo em: ~/claude/legacy/outputs/videos/{slug}-{timestamp}/
+bash scripts/ig-text.sh "<url>"
 ```
+
+Para escolher onde salvar a saída, defina `OUTPUT_ROOT` antes de rodar (ex:
+`OUTPUT_ROOT=/caminho/de/saida bash scripts/ig-text.sh "<url>"`). Sem isso,
+salva em `./outputs/videos/` relativo ao diretório de trabalho atual.
 
 Aceita:
 - Reels: `https://www.instagram.com/reel/xxx/`

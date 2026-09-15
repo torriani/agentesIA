@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-# stalk/scripts/lib/output.sh
-# Padroniza paths de output em ~/claude/legacy/outputs/copys/{cliente}/inteligencia/
+# coreai-stalk/scripts/lib/output.sh
+# Padroniza paths de output em ./outputs/copys/{cliente}/inteligencia/ (relativo ao
+# diretório de trabalho atual, a menos que STALK_OUTPUT_BASE seja definido)
 
 set -euo pipefail
 
-STALK_OUTPUT_BASE="${STALK_OUTPUT_BASE:-$HOME/claude/legacy/outputs/copys}"
-STALK_CONFIG_FILE="$HOME/.claude/skills/stalk/config.yaml"
+STALK_OUTPUT_BASE="${STALK_OUTPUT_BASE:-./outputs/copys}"
+STALK_CONFIG_FILE="$HOME/.claude/skills/coreai-stalk/config.yaml"
 
 # Lê valor de chave do config.yaml. Args: $1=chave
 stalk_config_get() {

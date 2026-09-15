@@ -107,7 +107,7 @@ A skill busca o token em 3 camadas, na ordem:
 Todos os comandos salvam em estrutura previsível:
 
 ```
-~/claude/legacy/outputs/copys/{cliente}/inteligencia/{tipo}/{slug}/
+${STALK_OUTPUT_BASE:-./outputs/copys}/{cliente}/inteligencia/{tipo}/{slug}/
 ├── data.json       # dados crus Apify
 ├── analysis.md     # intermediário (opcional)
 └── RELATORIO.md    # entrega final ao usuário

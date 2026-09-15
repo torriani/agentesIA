@@ -62,17 +62,19 @@ A skill é implementada em bash com pipeline:
 1. Parse comando + flags
 2. Carregar APIFY_TOKEN (env shell > ~/.claude/.env.global > bootstrap)
 3. Chamar Apify REST API
-4. Salvar dados crus + análise em ~/claude/legacy/outputs/copys/{cliente}/inteligencia/
+4. Salvar dados crus + análise em `${STALK_OUTPUT_BASE:-./outputs/copys}/{cliente}/inteligencia/`
 5. Imprimir relatório para o usuário
 ```
 
-**Para executar:** rode `bash ~/.claude/skills/stalk/scripts/stalk.sh <comando> [args]` via Bash tool.
+**Para executar:** rode `bash scripts/stalk.sh <comando> [args]` (relativo a esta
+skill) via Bash tool. Para escolher onde salvar a saída, defina
+`STALK_OUTPUT_BASE` antes de rodar.
 
 Exemplo:
 ```bash
-bash ~/.claude/skills/stalk/scripts/stalk.sh profile @raulbergesch
-bash ~/.claude/skills/stalk/scripts/stalk.sh search "advogado pme" --hooks --top 50
-bash ~/.claude/skills/stalk/scripts/stalk.sh dossie @raulbergesch --client bergesh-advogados
+bash scripts/stalk.sh profile @raulbergesch
+bash scripts/stalk.sh search "advogado pme" --hooks --top 50
+bash scripts/stalk.sh dossie @raulbergesch --client bergesh-advogados
 ```
 
 ## Bootstrap (primeira execução)
@@ -98,7 +100,7 @@ A LLM lê `data.json` + prompt e gera `RELATORIO.md` final no output folder.
 ## Output padrão
 
 ```
-~/claude/legacy/outputs/copys/{cliente}/inteligencia/{tipo}/{slug}/
+${STALK_OUTPUT_BASE:-./outputs/copys}/{cliente}/inteligencia/{tipo}/{slug}/
 ├── data.json       # dados crus Apify
 ├── analysis.md     # análise estruturada (intermediário)
 └── RELATORIO.md    # entrega final ao usuário
